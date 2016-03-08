@@ -2,17 +2,36 @@ var http = require('http');
 var url = require('url');
 
 var stocks = [];
-var index = 0;
-setInterval(function () {
-  var timestamp = new Date ().getTime();
-  stocks.push ({
-    timestamp: timestamp,
-    index: index ++,
+
+var next = (function () {
+  function nextValue (prev) {
+    var r = 2 * Math.random () - 1;
+    return prev * (1 + 0.8 * Math.pow (r, 5));
+  }
+
+  var prev = {
+    index: 0,
+    timestamp: new Date ().getTime(),
     stocks: {
-      NASDAQ: Math.random() * 15.0,
-      CAC40: Math.random() * 145
+      NASDAQ: 15.0,
+      CAC40: 145.0
     }
-  });
+  };
+
+  return function () {
+    return prev = {
+      timestamp: new Date ().getTime(),
+      index: prev.index + 1,
+      stocks: Object.keys (prev.stocks).reduce (function (result, key) {
+        result[key] = nextValue(prev.stocks[key]);
+        return result;
+      }, {})
+    };
+  }
+})();
+
+setInterval(function () {
+  stocks.push (next ());
 }, 1000);
 
 function tail (count) {
