@@ -1,6 +1,7 @@
 # Install
 
 ```console
+$> git clone git@gitlab.one2team.net:scratch/tutorial-node-stock-server.git
 $> npm install
 ```
 
