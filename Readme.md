@@ -2,13 +2,13 @@
 
 ```console
 $> git clone git@github.com:o2t/tutorial-node-stock-server.git
-$> npm install
+$> yarn
 ```
 
 # Run
 
 ```console
-$> node server.js
+$> yarn start
 ```
 
 # Query
