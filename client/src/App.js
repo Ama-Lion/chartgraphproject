@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./App.css";
+import Input from "./components/Input/input";
 import Chart from "./Chart";
 
 function App() {

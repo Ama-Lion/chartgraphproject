@@ -28,6 +28,13 @@ export default class Chart extends React.Component {
   }
 
   render() {
+    function addData(chart, label, data) {
+      chart.data.labels.push(label);
+      chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+      });
+      chart.update();
+    }
     let chart = this.state.show ? (
       <Line
         type="line"
@@ -63,7 +70,7 @@ export default class Chart extends React.Component {
             {
               data: this.state.chartDataCAC,
               label: "CAC4O",
-              borderColor: "blue",
+              borderColor: "#5e9cd3",
               fill: false,
               lineTension: 0.1,
               pointRadius: 1,
@@ -71,8 +78,7 @@ export default class Chart extends React.Component {
             {
               data: this.state.chartDataNAS,
               label: "NASDAQ",
-              borderColor: "orange",
-              backgroundColor: "rgba(255, 0, 0, 0.5)",
+              borderColor: "#ed8649",
               fill: false,
               pointRadius: 1,
               lineTension: 0.1,
